@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report4" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e1f62eb-2e37-48ef-80fa-57bdbc6c7ff7">
+	<property name="ireport.zoom" value="1.1000000000000003"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+factura_venta.id_factura_venta,
+factura_venta.fecha_factura_venta,
+factura_venta.subtotal_factura_venta,
+factura_venta.iva_factura_venta,
+factura_venta.total_factura_venta,
+producto.nombre_producto,
+producto.descripcion_producto,
+producto.precio_producto,
+clasificacion_producto.nombre_clasificacion_producto,
+cliente.cedula_cliente,
+cliente.nombres_cliente,
+cliente.apellidos_cliente,
+empleado.cedula_empleado,
+empleado.nombres_empleado,
+empleado.apellidos_empleado
+from factura_venta_line
+INNER JOIN public.producto on producto.id_producto = factura_venta_line.id_producto
+INNER JOIN public.clasificacion_producto on clasificacion_producto.id_clasificacion_producto = producto.id_clasificacion_producto
+INNER JOIN public.factura_venta on factura_venta.id_factura_venta = factura_venta_line.id_factura_venta
+INNER JOIN public.cliente on cliente.id_cliente = factura_venta.id_cliente
+INNER JOIN public.empleado on empleado.id_empleado = factura_venta.id_empleado
+where factura_venta.id_factura_venta = 12;]]>
+	</queryString>
+	<field name="id_factura_venta" class="java.lang.Integer"/>
+	<field name="fecha_factura_venta" class="java.sql.Date"/>
+	<field name="subtotal_factura_venta" class="java.math.BigDecimal"/>
+	<field name="iva_factura_venta" class="java.math.BigDecimal"/>
+	<field name="total_factura_venta" class="java.math.BigDecimal"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<field name="descripcion_producto" class="java.lang.String"/>
+	<field name="precio_producto" class="java.lang.String"/>
+	<field name="nombre_clasificacion_producto" class="java.lang.String"/>
+	<field name="cedula_cliente" class="java.lang.String"/>
+	<field name="nombres_cliente" class="java.lang.String"/>
+	<field name="apellidos_cliente" class="java.lang.String"/>
+	<field name="cedula_empleado" class="java.lang.String"/>
+	<field name="nombres_empleado" class="java.lang.String"/>
+	<field name="apellidos_empleado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="182" y="17" width="161" height="20" uuid="86e891ea-3dbc-4f58-a14f-52eebe2a1d10"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SOPRANO INTRUMENTOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="161" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="42" height="20" uuid="27ae744c-7217-4680-88d6-f0c816fd308c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="42" y="0" width="40" height="20" uuid="d651b739-0808-4f6c-b3f9-834d6c810c4d"/>
+				<textFieldExpression><![CDATA[$F{fecha_factura_venta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="32" width="110" height="20" uuid="280448b1-bc57-423a-95d2-26c8454d36ec"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="52" width="54" height="20" uuid="566cdce8-dc69-4cf2-a277-4cbefb735afd"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[CÉDULA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="72" width="54" height="20" uuid="9aff1545-d713-4dd7-81cb-bcaa2a39587f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="52" width="100" height="20" uuid="eb4c77f0-bc70-49f3-a3b4-7b02b069b776"/>
+				<textFieldExpression><![CDATA[$F{cedula_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="72" width="17" height="20" uuid="6feaa1ba-fb32-4b78-a064-c34e757dd00c"/>
+				<textFieldExpression><![CDATA[$F{nombres_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="72" width="100" height="20" uuid="0432e801-8499-43af-9e8a-7e6182631818"/>
+				<textFieldExpression><![CDATA[$F{apellidos_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="92" width="110" height="20" uuid="165afc4d-6e2a-4026-b788-c74b882604c4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VENDEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="131" width="54" height="20" uuid="c110385f-36a8-41f2-9bf5-ca42748c2bda"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="111" width="54" height="20" uuid="72fd2934-d88b-4150-a9d7-0338525badf0"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[CÉDULA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="112" width="100" height="20" uuid="aaa0a3db-738f-44e4-a91f-fb12ed66631d"/>
+				<textFieldExpression><![CDATA[$F{cedula_empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="132" width="17" height="20" uuid="947088a6-cf7a-4b5d-b8c3-16c451466346"/>
+				<textFieldExpression><![CDATA[$F{nombres_empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="132" width="100" height="20" uuid="93be0bc3-d818-4e42-95a8-45cc8941db42"/>
+				<textFieldExpression><![CDATA[$F{apellidos_empleado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="211" y="0" width="129" height="20" uuid="5d6acba3-92ff-40c8-9616-9931c6471175"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETALLES DE FACTURA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="174" splitType="Stretch">
+			<staticText>
+				<reportElement x="52" y="18" width="69" height="20" uuid="b49995e9-77d2-4d39-9be1-d8c0662cdb66"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="52" y="48" width="100" height="20" uuid="6273fd3f-c5c8-459b-a6aa-adf559990206"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="182" y="18" width="81" height="20" uuid="ee8d9703-f0f9-41cc-9f82-fb979e847336"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="18" width="42" height="20" uuid="1c435e43-e809-4056-bd59-847816247e2d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="182" y="48" width="100" height="20" uuid="abadbcf4-86a7-4130-84c1-ab35463a2738"/>
+				<textFieldExpression><![CDATA[$F{descripcion_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="48" width="101" height="20" uuid="71228220-9135-4700-8f2f-2b0227bd1c3d"/>
+				<textFieldExpression><![CDATA[$F{precio_producto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="89" width="73" height="20" uuid="57ab56c5-8a89-4864-941e-129bb524b7d6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUB TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="448" y="89" width="100" height="20" uuid="e03589f1-e180-4da3-86bd-3bc354a1a358"/>
+				<textFieldExpression><![CDATA[$F{subtotal_factura_venta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="109" width="73" height="20" uuid="cb6c4ef5-28bb-46c6-88e4-adf15a47260d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA(12%):]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="449" y="109" width="100" height="20" uuid="22931cc7-aa66-48d6-82d1-392ec4af0150"/>
+				<textFieldExpression><![CDATA[$F{iva_factura_venta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="129" width="73" height="20" uuid="95282bae-af3c-4913-a2bd-04621c904919"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="449" y="129" width="100" height="20" uuid="0b7ef48c-9842-4de7-ac3f-d2d7d0e94838"/>
+				<textFieldExpression><![CDATA[$F{total_factura_venta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="18" width="81" height="20" uuid="a7c06361-3366-4ec9-a8de-dbf10d00bf7a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASIFICACIÓN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="311" y="48" width="110" height="20" uuid="05d9c6f9-6e02-40e5-9606-71fe06906dce"/>
+				<textFieldExpression><![CDATA[$F{nombre_clasificacion_producto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="18" width="27" height="20" uuid="2a38483f-8ba9-4c74-a784-a25865794738"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="48" width="100" height="20" uuid="397dd281-e11f-4a12-963a-70f1119ddd27"/>
+				<textFieldExpression><![CDATA[$F{id_factura_venta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
